@@ -3,5 +3,6 @@ source 'https://rubygems.org' do
 
   group :development do
     gem 'solargraph'
+    gem 'rufo'
   end
 end
