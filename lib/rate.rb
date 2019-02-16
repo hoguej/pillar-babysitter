@@ -1,5 +1,5 @@
 class Rate
-  attr_reader :start_time
+  attr_reader :start_time, :end_time
 
   def start_time=(start_time)
     error_message = "Start time must be after 5 pm and no later than 3 am"
@@ -9,5 +9,9 @@ class Rate
       raise "Start time must be after 5 pm and no later than 3 am"
     end
     @start_time = start_time
+  end
+
+  def end_time=(end_time)
+    @end_time = end_time
   end
 end

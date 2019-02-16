@@ -21,4 +21,9 @@ describe Rate do
       }.to raise_error "Start time must be after 5 pm and no later than 3 am"
     end
   end
+
+  it 'should be able to set an end time' do
+    @rate.end_time = 6
+    expect(@rate.end_time).to be(6)
+  end
 end
