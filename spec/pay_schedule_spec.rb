@@ -41,4 +41,10 @@ describe PaySchedule do
     @pay_schedule.rate = 5
     expect(@pay_schedule.rate).to be(5)
   end
+
+  it 'should enforce all rates are positive integers' do
+    expect {
+      @pay_schedule.rate = 0
+    }.to raise_error "Rate must be a positive integer"
+  end
 end

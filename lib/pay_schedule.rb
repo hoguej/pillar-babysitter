@@ -1,6 +1,5 @@
 class PaySchedule
-  attr_accessor :rate
-  attr_reader :start_time, :end_time
+  attr_reader :start_time, :end_time, :rate
 
   def start_time=(start_time)
     error_message = 'Start time must be after 5 pm and no later than 3 am'
@@ -19,5 +18,12 @@ class PaySchedule
     end
 
     @end_time = end_time
+  end
+
+  def rate=(rate)
+    unless rate.kind_of?(Integer) && rate > 0
+      raise "Rate must be a positive integer"
+    end
+    @rate = rate
   end
 end
