@@ -14,10 +14,11 @@ describe Rate do
     expect(@rate.start_time).to be(5)
   end
 
-  it 'should give an error if start_time is less than 1' do
-    # 5-12, 1-3
-    expect {
-      @rate.start_time = 0
-    }.to raise_error 'Start time must be above 1'
+  it 'should give an error if an invalid start_time' do
+    invalid_start_times = [0, 4, 13].each do |invalid_start_time|
+      expect {
+        @rate.start_time = 0
+      }.to raise_error "Start time must be after 5 pm and no later than 3 am"
+    end
   end
 end
