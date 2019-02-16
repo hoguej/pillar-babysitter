@@ -3,9 +3,11 @@ class PayPlan
 
   def initialize
     @pay_schedules = []
+    @rates_by_hour = {}
   end
 
   def add_pay_schedule(pay_schedule)
+    calc_end_time = pay_schedule.end_time
     @pay_schedules << pay_schedule
   end
 
