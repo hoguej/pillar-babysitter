@@ -48,7 +48,7 @@ describe PaySchedule do
     }.to raise_error "Rate must be a positive integer"
   end
 
-  it 'should accept property values when creating a new pay schedule' do
+  it 'should accept proper values when creating a new pay schedule' do
     @ps = PaySchedule.new(start_time: 5, end_time: 6, rate: 20)
     expect([@ps.start_time, @ps.end_time, @ps.rate]).to eq([5, 6, 20])
   end
