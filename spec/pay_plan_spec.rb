@@ -14,4 +14,13 @@ describe PayPlan do
     @pay_plan.add_pay_schedule(pay_schedule)
     expect(@pay_plan.pay_schedules).to eq([pay_schedule])
   end
+
+  it 'should give the rate for a given hour in pay_schedule' do
+    pay_schedule = PaySchedule.new
+    pay_schedule.start_time = 5
+    pay_schedule.end_time = 6
+    pay_schedule.rate = 100
+    @pay_plan.add_pay_schedule(pay_schedule)
+    expect(@pay_plan.rate_for_hour(5)).to eq(100)
+  end
 end
