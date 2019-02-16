@@ -1,4 +1,5 @@
 class Rate
+  attr_accessor :rate
   attr_reader :start_time, :end_time
 
   def start_time=(start_time)
