@@ -1,1 +1,1 @@
-require_relative '../lib/rate'
+require_relative '../lib/pay_schedule'

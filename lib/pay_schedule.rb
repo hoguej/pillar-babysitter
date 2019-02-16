@@ -1,4 +1,4 @@
-class Rate
+class PaySchedule
   attr_accessor :rate
   attr_reader :start_time, :end_time
 
