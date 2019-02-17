@@ -1,8 +1,12 @@
 require 'active_support/core_ext/range/overlaps'
+require 'exceptions/hour_out_of_expected_range_error'
 
 class Shift
   attr_accessor :start_time, :end_time
 
+  # Note:
+  # MIN_START_TIME is assumed to be PM on day 1
+  # MAX_END_TIME is assumed to be AM on day 2
   MIN_START_TIME = 5
   MAX_END_TIME = 4
 
@@ -11,6 +15,10 @@ class Shift
     self.end_time = params[:end_time] if params[:end_time]
   end
 
+  #
+  # Convert and store to date/time so we can do easy time math, and the time range crosses the day border
+  # If the requirements change to deal with specific date/times, this should be fairly easy to refactor
+  #
   def start_time=(start_time)
     @start_time_as_date = start_time_to_date_time(start_time)
     @start_time = start_time
@@ -27,7 +35,7 @@ class Shift
     elsif (hour >= 1 && hour < MAX_END_TIME)
       return Time.new(1978, 9, 13, hour)
     else
-      raise "Start time must be after #{MIN_START_TIME} pm and no later than #{MAX_END_TIME - 1} am"
+      raise HourOutOfExpectedRangeError.new(min_start_time: MIN_START_TIME, max_end_time: MAX_END_TIME)
     end
   end
 
@@ -37,7 +45,7 @@ class Shift
     elsif (hour >= 1 && hour <= MAX_END_TIME)
       return Time.new(1978, 9, 13, hour)
     else
-      raise "End time must be after #{MIN_START_TIME + 1} pm and no later than #{MAX_END_TIME} am"
+      raise HourOutOfExpectedRangeError.new(min_start_time: MIN_START_TIME, max_end_time: MAX_END_TIME)
     end
   end
 
