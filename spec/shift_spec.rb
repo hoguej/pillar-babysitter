@@ -63,4 +63,10 @@ describe Shift do
     shift2 = Shift.new(start_time: 9, end_time: 12)
     expect(shift1.overlaps?(shift2)).to be(false)
   end
+
+  it 'should tell me that two shifts dont overlap if they only share a border time' do
+    shift1 = Shift.new(start_time: 5, end_time: 8)
+    shift2 = Shift.new(start_time: 8, end_time: 12)
+    expect(shift1.overlaps?(shift2)).to be(false)
+  end
 end

@@ -54,6 +54,7 @@ class Shift
   end
 
   def overlaps?(shift)
-    (start_time..end_time).overlaps?(shift.start_time..shift.end_time)
+    # add / subtract a millisecond so that it doesn't report an overlap if it's only a border overlap
+    ((start_time+1)..(end_time-1)).overlaps?((shift.start_time+1)..(shift.end_time-1))
   end
 end
