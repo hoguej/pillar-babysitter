@@ -19,4 +19,8 @@ class Shift
 
     @end_time = end_time
   end
+
+  def includes?(hour)
+    return true
+  end
 end

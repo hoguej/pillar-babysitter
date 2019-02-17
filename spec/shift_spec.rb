@@ -34,4 +34,10 @@ describe Shift do
       }.to raise_error "End time must be after 6 pm and no later than 4 am"
     end
   end
+
+  it 'should tell me if a date is included in a shift' do
+    @shift.start_time = 5
+    @shift.end_time = 4
+    expect(@shift.includes?(6)).to be true
+  end
 end
