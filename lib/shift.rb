@@ -4,6 +4,11 @@ class Shift
   MIN_START_TIME = 5
   MAX_END_TIME = 4
 
+  def initialize(params = {})
+    self.start_time = params[:start_time] if params[:start_time]
+    self.end_time = params[:end_time] if params[:end_time]
+  end
+
   def start_time=(start_time)
     @start_time_as_date = start_time_to_date_time(start_time)
     @start_time = start_time
