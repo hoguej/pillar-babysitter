@@ -1,3 +1,5 @@
+require 'active_support/core_ext/range/overlaps'
+
 class Shift
   attr_accessor :start_time, :end_time
 
@@ -49,5 +51,9 @@ class Shift
 
   def include?(hour)
     (@start_time_as_date..@end_time_as_date).include?(hour_to_date_time(hour))
+  end
+
+  def overlaps?(shift)
+    (start_time..end_time).overlaps?(shift.start_time..shift.end_time)
   end
 end
