@@ -1,3 +1,5 @@
+require_relative 'exceptions/overlapping_date_ranges_error'
+
 class PayPlan
   attr_reader :pay_schedules
 
@@ -8,7 +10,7 @@ class PayPlan
 
   def add_pay_schedule(new_pay_schedule)
     @pay_schedules.each do |existing_pay_schedule|
-      raise "New pay schedule should not overlap existing pay schedules" if existing_pay_schedule.overlaps?(new_pay_schedule)
+      raise OverlappingDateRangesError.new if existing_pay_schedule.overlaps?(new_pay_schedule)
     end
     @pay_schedules << new_pay_schedule 
   end

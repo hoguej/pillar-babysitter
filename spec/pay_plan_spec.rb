@@ -37,6 +37,6 @@ describe PayPlan do
     @pay_plan.add_pay_schedule(pay_schedule1)
     expect {
       @pay_plan.add_pay_schedule(pay_schedule2)
-    }.to raise_error
+    }.to raise_error OverlappingDateRangesError
   end
 end
