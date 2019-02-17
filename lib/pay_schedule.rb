@@ -1,29 +1,11 @@
-class PaySchedule
-  attr_reader :rate, :shift
+require_relative 'shift'
+
+class PaySchedule < Shift
+  attr_reader :rate
 
   def initialize(params = {})
-    @shift = Shift.new
-    @shift.start_time = params[:start_time] if params[:start_time]
-    @shift.end_time = params[:end_time] if params[:end_time]
+    super
     self.rate = params[:rate] if params[:rate]
-  end
-
-  def start_time=(start_time)
-    shift.start_time = start_time
-    @start_time = start_time
-  end
-
-  def start_time
-    shift.start_time
-  end
-
-  def end_time=(end_time)
-    shift.end_time = end_time
-    @end_time = end_time
-  end
-
-  def end_time
-    shift.end_time
   end
 
   def rate=(rate)
