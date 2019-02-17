@@ -17,7 +17,7 @@ describe Shift do
     invalid_start_times.each do |invalid_start_time|
       expect {
         @shift.start_time = invalid_start_time
-      }.to raise_error "Hour must be after 5 PM and no later than 4 AM"
+      }.to raise_error HourOutOfExpectedRangeError
     end
   end
 

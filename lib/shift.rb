@@ -35,7 +35,7 @@ class Shift
     elsif (hour >= 1 && hour < MAX_END_TIME)
       return Time.new(1978, 9, 13, hour)
     else
-      raise HourOutOfExpectedRangeError.new(min_start_time: MIN_START_TIME, max_end_time: MAX_END_TIME)
+      raise HourOutOfExpectedRangeError.new
     end
   end
 
@@ -45,7 +45,7 @@ class Shift
     elsif (hour >= 1 && hour <= MAX_END_TIME)
       return Time.new(1978, 9, 13, hour)
     else
-      raise HourOutOfExpectedRangeError.new(min_start_time: MIN_START_TIME, max_end_time: MAX_END_TIME)
+      raise HourOutOfExpectedRangeError.new
     end
   end
 
