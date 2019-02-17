@@ -35,9 +35,15 @@ describe Shift do
     end
   end
 
-  it 'should tell me if a date is included in a shift' do
+  it 'should tell me if an hour is included in a shift' do
     @shift.start_time = 5
     @shift.end_time = 4
-    expect(@shift.includes?(6)).to be true
+    expect(@shift.include?(6)).to be true
+  end
+
+  it 'should tell me if an hour is not included in a shift' do
+    @shift.start_time = 5
+    @shift.end_time = 7
+    expect(@shift.include?(8)).to be false
   end
 end
