@@ -50,7 +50,7 @@ class Shift
   end
 
   def include?(hour)
-    (@start_time_as_date..@end_time_as_date).include?(hour_to_date_time(hour))
+    (@start_time_as_date..@end_time_as_date-1).include?(hour_to_date_time(hour))
   end
 
   def overlaps?(shift)

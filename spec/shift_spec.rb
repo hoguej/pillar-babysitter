@@ -47,6 +47,12 @@ describe Shift do
     expect(@shift.include?(8)).to be false
   end
 
+  it 'should tell me that the last hour isnt included' do
+    @shift.start_time = 5
+    @shift.end_time = 7
+    expect(@shift.include?(7)).to be false
+  end
+
   it 'should be able to set params in init' do
     s = Shift.new(start_time: 5, end_time: 8)
     expect([s.start_time, s.end_time]).to eq([5, 8])
