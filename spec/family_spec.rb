@@ -17,4 +17,10 @@ describe Family do
     @family.name = 'testname'
     expect(@family.name).to eq('testname')
   end
+
+  it "should let me set properties on init" do
+    pay_plan = PayPlan.new
+    f = Family.new(name: "test name", pay_plan: pay_plan)
+    expect([f.name, f.pay_plan]).to eq(["test name", pay_plan])
+  end
 end
