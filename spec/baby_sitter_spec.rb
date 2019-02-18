@@ -18,8 +18,8 @@ describe BabySitter do
     # Family C pays $21 per hour before 9pm, then $15 the rest of the night
     @familyC = Family.new(name: 'C')
     @familyC.pay_plan = PayPlan.new
-    @familyC.pay_plan.add_pay_schedule(PaySchedule.new(start_time: 5, end_time: 9, rate: 21))
-    @familyC.pay_plan.add_pay_schedule(PaySchedule.new(start_time: 9, end_time: 4, rate: 15))
+    @familyC.pay_plan.add_pay_schedule(PaySchedule.new(start_time: 5, end_time: 9, rate: 21)) # 84
+    @familyC.pay_plan.add_pay_schedule(PaySchedule.new(start_time: 9, end_time: 4, rate: 15)) # 105 
   end
 
   it 'should be able create a new baby sitter' do
@@ -43,5 +43,11 @@ describe BabySitter do
     shift = Shift.new(start_time: 5, end_time: 4)
     pay_for_shift = BabySitter.new.calculate_pay_for_shift(family: @familyB, shift: shift)
     expect(pay_for_shift).to eq(140)
+  end
+
+  it 'should calculate payment for a full shift of FamilyC' do
+    shift = Shift.new(start_time: 5, end_time: 4)
+    pay_for_shift = BabySitter.new.calculate_pay_for_shift(family: @familyC, shift: shift)
+    expect(pay_for_shift).to eq(189)
   end
 end
