@@ -1,4 +1,5 @@
 require 'active_support/core_ext/range/overlaps'
+require 'active_support/core_ext/numeric/time'
 require 'exceptions/hour_out_of_expected_range_error'
 require 'exceptions/start_time_after_end_time_error'
 require 'exceptions/end_time_before_start_time_error'
@@ -41,7 +42,7 @@ class Shift
 
   def start_time_to_date_time(hour)
     if(hour >= MIN_START_TIME && hour <= 12)
-      return Time.new(1978, 9, 12, hour)
+      return Time.new(1978, 9, 12, hour + 12)
     elsif (hour >= 1 && hour < MAX_END_TIME)
       return Time.new(1978, 9, 13, hour)
     else
@@ -51,7 +52,7 @@ class Shift
 
   def end_time_to_date_time(hour)
     if(hour > MIN_START_TIME && hour <= 12)
-      return Time.new(1978, 9, 12, hour)
+      return Time.new(1978, 9, 12, hour + 12)
     elsif (hour >= 1 && hour <= MAX_END_TIME)
       return Time.new(1978, 9, 13, hour)
     else
@@ -61,7 +62,7 @@ class Shift
 
   def hour_to_date_time(hour)
     if(hour >= MIN_START_TIME && hour <= 12)
-      return Time.new(1978, 9, 12, hour)
+      return Time.new(1978, 9, 12, hour + 12)
     elsif (hour >= 1 && hour <= MAX_END_TIME)
       return Time.new(1978, 9, 13, hour)
     end
@@ -74,5 +75,18 @@ class Shift
   def overlaps?(shift)
     # add / subtract a millisecond so that it doesn't report an overlap if it's only a border overlap
     ((start_time+1)..(end_time-1)).overlaps?((shift.start_time+1)..(shift.end_time-1))
+  end
+
+  def hours
+    return nil unless (@start_time_as_date && @end_time_as_date)
+
+    return_hours = []
+    hour_iterator = @start_time_as_date
+    while hour_iterator < @end_time_as_date - 1
+      return_hours << hour_iterator.strftime("%l").to_i
+      hour_iterator += 1.hour
+    end
+
+    return return_hours
   end
 end

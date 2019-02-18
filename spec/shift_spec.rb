@@ -89,4 +89,10 @@ describe Shift do
       @shift.end_time = 6
     }.to raise_error EndTimeBeforeStartTimeError
   end
+
+  it 'should tell me the hours in a range' do
+    @shift.start_time = 5
+    @shift.end_time = 4
+    expect(@shift.hours).to eq([5,6,7,8,9,10,11,12,1,2,3])
+  end
 end
