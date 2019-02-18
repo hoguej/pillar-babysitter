@@ -1,5 +1,7 @@
 require 'active_support/core_ext/range/overlaps'
 require 'exceptions/hour_out_of_expected_range_error'
+require 'exceptions/start_time_after_end_time_error'
+require 'exceptions/end_time_before_start_time_error'
 
 class Shift
   attr_accessor :start_time, :end_time
@@ -20,12 +22,20 @@ class Shift
   # If the requirements change to deal with specific date/times, this should be fairly easy to refactor
   #
   def start_time=(start_time)
-    @start_time_as_date = start_time_to_date_time(start_time)
+    start_time_candidate = start_time_to_date_time(start_time)
+    if(@end_time_as_date && start_time_candidate > @end_time_as_date)
+      raise StartTimeAfterEndTimeError.new
+    end
+    @start_time_as_date = start_time_candidate
     @start_time = start_time
   end
 
   def end_time=(end_time)
-    @end_time_as_date = end_time_to_date_time(end_time)
+    end_time_candidate = end_time_to_date_time(end_time)
+    if(@start_time_as_date && end_time_candidate < @start_time_as_date)
+      raise EndTimeBeforeStartTimeError.new
+    end
+    @end_time_as_date = end_time_candidate
     @end_time = end_time
   end
 

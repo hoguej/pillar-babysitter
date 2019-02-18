@@ -75,4 +75,18 @@ describe Shift do
     shift2 = Shift.new(start_time: 8, end_time: 12)
     expect(shift1.overlaps?(shift2)).to be(false)
   end
+
+  it 'should not allow you to enter a start_time after end_time' do
+    @shift.end_time = 7
+    expect {
+      @shift.start_time = 8
+    }.to raise_error StartTimeAfterEndTimeError
+  end
+
+  it 'should not allow you to enter and end_time before start_time' do
+    @shift.start_time = 7
+    expect {
+      @shift.end_time = 6
+    }.to raise_error EndTimeBeforeStartTimeError
+  end
 end
