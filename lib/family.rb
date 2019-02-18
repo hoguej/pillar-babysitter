@@ -1,3 +1,3 @@
 class Family
-  attr_accessor :pay_plan
+  attr_accessor :pay_plan, :name
 end
