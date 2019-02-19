@@ -1,0 +1,18 @@
+current directory: /Users/hoguej2/dev/pillar-babysitter/bundle/ruby/2.6.0/gems/jaro_winkler-1.5.2/ext/jaro_winkler
+/usr/local/opt/ruby/bin/ruby -I /usr/local/Cellar/ruby/2.6.1/lib/ruby/2.6.0 -r ./siteconf20190218-10653-fafwl0.rb extconf.rb
+creating Makefile
+
+current directory: /Users/hoguej2/dev/pillar-babysitter/bundle/ruby/2.6.0/gems/jaro_winkler-1.5.2/ext/jaro_winkler
+make "DESTDIR=" clean
+
+current directory: /Users/hoguej2/dev/pillar-babysitter/bundle/ruby/2.6.0/gems/jaro_winkler-1.5.2/ext/jaro_winkler
+make "DESTDIR="
+compiling adj_matrix.c
+compiling codepoints.c
+compiling jaro.c
+compiling jaro_winkler.c
+linking shared-object jaro_winkler/jaro_winkler_ext.bundle
+
+current directory: /Users/hoguej2/dev/pillar-babysitter/bundle/ruby/2.6.0/gems/jaro_winkler-1.5.2/ext/jaro_winkler
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 jaro_winkler_ext.bundle ./.gem.20190218-10653-d20xcj/jaro_winkler
