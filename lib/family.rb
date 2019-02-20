@@ -11,8 +11,14 @@ class Family
   end
 
   def self.load(families_hash)
-    families_hash.keys.map do |name|
-      Family.new(name: name)
+    result = []
+    families_hash.each_pair do |name, pay_schedules|
+      family = Family.new(name: name)
+      pay_schedules.each do |pay_schedule_hash|
+        family.pay_plan.add_pay_schedule(PaySchedule.new(pay_schedule_hash))
+      end
+      result << family
     end
+    return result
   end
 end
