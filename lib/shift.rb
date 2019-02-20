@@ -1,8 +1,8 @@
 require 'active_support/core_ext/range/overlaps'
 require 'active_support/core_ext/numeric/time'
-require 'exceptions/hour_out_of_expected_range_error'
-require 'exceptions/start_time_after_end_time_error'
-require 'exceptions/end_time_before_start_time_error'
+require_relative 'exceptions/hour_out_of_expected_range_error'
+require_relative 'exceptions/start_time_after_end_time_error'
+require_relative 'exceptions/end_time_before_start_time_error'
 
 class Shift
   attr_accessor :start_time, :end_time
