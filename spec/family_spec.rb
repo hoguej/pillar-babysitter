@@ -23,4 +23,14 @@ describe Family do
     f = Family.new(name: "test name", pay_plan: pay_plan)
     expect([f.name, f.pay_plan]).to eq(["test name", pay_plan])
   end
+
+  it "should load a hash of famlies" do
+    families = { 
+      "A" => [],
+      "B" => [],
+      "C" => []
+    }
+    result_classes = Family.load(families).map{ |family| family.class}
+    expect(result_classes).to eq([Family, Family, Family])
+  end
 end
