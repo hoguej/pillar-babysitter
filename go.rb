@@ -21,14 +21,14 @@ family_data = {
   ],
   'D' => [
     {start_time: 5, end_time: 6, rate: 10},
-    {start_time: 6, end_time: 7, rate: 100},
-    {start_time: 7, end_time: 4, rate: 1000}
+    {start_time: 6, end_time: 7, rate: 20},
+    {start_time: 7, end_time: 4, rate: 30}
   ],
   'E' => [
-    {start_time: 5, end_time: 7, rate: 10},
-    {start_time: 7, end_time: 12, rate: 20},
-    {start_time: 12, end_time: 1, rate: 100},
-    {start_time: 1, end_time: 4, rate: 1000}
+    {start_time: 5, end_time: 7, rate: 40},
+    {start_time: 7, end_time: 12, rate: 30},
+    {start_time: 12, end_time: 1, rate: 20},
+    {start_time: 1, end_time: 4, rate: 10}
   ],
   'F' => [
     {start_time: 5, end_time: 4, rate: 10}

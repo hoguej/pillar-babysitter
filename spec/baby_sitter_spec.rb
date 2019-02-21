@@ -50,4 +50,17 @@ describe BabySitter do
     pay_for_shift = BabySitter.new.calculate_pay_for_shift(family: @familyC, shift: shift)
     expect(pay_for_shift).to eq(189)
   end
+
+  it 'should return hour/pay hash when running calculate payment' do
+    shift = Shift.new(start_time: 9, end_time: 1)
+    baby_sitter = BabySitter.new
+    pay_for_shift = baby_sitter.calculate_pay_for_shift(family: @familyA, shift: shift)
+    expected = [
+      {hour: 9, rate: 15},
+      {hour: 10, rate: 15},
+      {hour: 11, rate: 20},
+      {hour: 12, rate: 20}
+    ]
+    expect(baby_sitter.last_pay_per_hour).to eq(expected)
+  end
 end
