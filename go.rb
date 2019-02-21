@@ -53,6 +53,7 @@ shifts.each do |shift|
   puts "Shift: #{shift.start_time} - #{shift.end_time}"
   families.each do |family|
     pay = baby_sitter.calculate_pay_for_shift(family: family, shift: shift)
-    puts "\t#{family.name}: $#{pay}"
+    hourly = baby_sitter.last_pay_per_hour.map{ |m| "#{m[:hour]}:$#{m[:rate]}" }.join(" ")
+    puts "\t#{family.name} - Total: $#{pay}\tHourly: #{hourly}"
   end
 end
